@@ -1,0 +1,14 @@
+import { ethers } from "ethers";
+import { Address } from "viem";
+export declare const getMultisigWallet: (address: Address) => ethers.Contract;
+export declare const getMultisigWalletWithSigner: (address: Address) => Promise<ethers.Contract>;
+export declare function proposeTransaction(walletAddress: Address, to: Address, value: string, data: string, vaultLabel: string): Promise<number>;
+export declare function fetchTransactions(walletAddress: Address): Promise<any[]>;
+export declare function signTransaction(walletAddress: Address, txId: number): Promise<any>;
+export declare function executeTransaction(walletAddress: Address, txId: number): Promise<any>;
+export declare function revokeTransaction(walletAddress: Address, txId: number): Promise<any>;
+export declare function cancelTransaction(walletAddress: Address, txId: number): Promise<any>;
+export declare function addOwner(walletAddress: Address, newOwner: Address): Promise<any>;
+export declare function removeOwner(walletAddress: Address, owner: Address): Promise<any>;
+export declare function assignSessionDelegate(walletAddr: Address, delegate: Address): Promise<any>;
+export declare function isSessionDelegate(walletAddr: Address, addr: Address): Promise<any>;

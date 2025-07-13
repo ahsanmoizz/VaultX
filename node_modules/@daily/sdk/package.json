@@ -1,0 +1,18 @@
+{
+  "name": "@daily/sdk",
+  "version": "1.0.0",
+  "main": "src/index.ts",
+  "types": "src/index.ts",
+  "private": true,
+  "dependencies": {
+    "ethers": "^6.10.0",
+    "node-fetch": "^3.3.2"
+  },
+   "exports": {
+    "./abi/MultisigWallet.json": "./abi/MultisigWallet.json",
+    "./abi/MultisigWalletFactory.json": "./abi/MultisigWalletFactory.json"
+  },
+  "scripts": {
+    "build": "tsc"
+  }
+}

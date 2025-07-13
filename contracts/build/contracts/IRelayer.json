@@ -1,0 +1,689 @@
+{
+  "contractName": "IRelayer",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nonce",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "signature",
+          "type": "bytes"
+        }
+      ],
+      "name": "executeMetaTx",
+      "outputs": [],
+      "stateMutability": "payable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "user",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "to",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "value",
+          "type": "uint256"
+        },
+        {
+          "internalType": "bytes",
+          "name": "data",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nonce",
+          "type": "uint256"
+        }
+      ],
+      "name": "getMetaTxHash",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "relayer",
+          "type": "address"
+        }
+      ],
+      "name": "isRelayerApproved",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.8.21+commit.d9974bed\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"signature\",\"type\":\"bytes\"}],\"name\":\"executeMetaTx\",\"outputs\":[],\"stateMutability\":\"payable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"user\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"to\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"value\",\"type\":\"uint256\"},{\"internalType\":\"bytes\",\"name\":\"data\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"nonce\",\"type\":\"uint256\"}],\"name\":\"getMetaTxHash\",\"outputs\":[{\"internalType\":\"bytes32\",\"name\":\"\",\"type\":\"bytes32\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"relayer\",\"type\":\"address\"}],\"name\":\"isRelayerApproved\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"executeMetaTx(address,address,uint256,bytes,uint256,bytes)\":{\"params\":{\"data\":\"Calldata payload\",\"nonce\":\"User nonce to prevent replay\",\"signature\":\"Signed message from user\",\"to\":\"The target contract\",\"user\":\"The address of the user who signed the meta-TX\",\"value\":\"ETH to send\"}}},\"title\":\"IRelayer - Interface for gas sponsoring and meta-transactions\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"executeMetaTx(address,address,uint256,bytes,uint256,bytes)\":{\"notice\":\"Called by a relayer to execute a transaction on user's behalf\"},\"getMetaTxHash(address,address,uint256,bytes,uint256)\":{\"notice\":\"Returns the expected hash to be signed for a given meta-TX\"},\"isRelayerApproved(address)\":{\"notice\":\"Get relayer's current trusted status\"}},\"version\":1}},\"settings\":{\"compilationTarget\":{\"project:/contracts/interfaces/IRelayer.sol\":\"IRelayer\"},\"evmVersion\":\"shanghai\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/interfaces/IRelayer.sol\":{\"keccak256\":\"0x2fd0cc41cb8501249ea688e7a7dce73393d5b3eec7e2c388da7db91829c8b848\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://8f05b766bd6124f7e2c7793309bf0d36af7869bc815567d139fa9a425ad0bd62\",\"dweb:/ipfs/QmUg5qpLBJke7a1ay58dSndWH1XoeRSuKTymxdPbZVjyce\"]}},\"version\":1}",
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "immutableReferences": {},
+  "generatedSources": [],
+  "deployedGeneratedSources": [],
+  "sourceMap": "",
+  "deployedSourceMap": "",
+  "source": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.20;\r\n\r\n/// @title IRelayer - Interface for gas sponsoring and meta-transactions\r\ninterface IRelayer {\r\n    /// @notice Called by a relayer to execute a transaction on user's behalf\r\n    /// @param user The address of the user who signed the meta-TX\r\n    /// @param to The target contract\r\n    /// @param value ETH to send\r\n    /// @param data Calldata payload\r\n    /// @param nonce User nonce to prevent replay\r\n    /// @param signature Signed message from user\r\n    function executeMetaTx(\r\n        address user,\r\n        address to,\r\n        uint256 value,\r\n        bytes calldata data,\r\n        uint256 nonce,\r\n        bytes calldata signature\r\n    ) external payable;\r\n\r\n    /// @notice Returns the expected hash to be signed for a given meta-TX\r\n    function getMetaTxHash(\r\n        address user,\r\n        address to,\r\n        uint256 value,\r\n        bytes calldata data,\r\n        uint256 nonce\r\n    ) external view returns (bytes32);\r\n\r\n    /// @notice Get relayer's current trusted status\r\n    function isRelayerApproved(address relayer) external view returns (bool);\r\n}\r\n",
+  "sourcePath": "E:\\Daily-multisig\\daily-multisig-app\\contracts\\contracts\\interfaces\\IRelayer.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/interfaces/IRelayer.sol",
+    "exportedSymbols": {
+      "IRelayer": [
+        4131
+      ]
+    },
+    "id": 4132,
+    "license": "MIT",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 4089,
+        "literals": [
+          "solidity",
+          "^",
+          "0.8",
+          ".20"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "33:24:23"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "canonicalName": "IRelayer",
+        "contractDependencies": [],
+        "contractKind": "interface",
+        "documentation": {
+          "id": 4090,
+          "nodeType": "StructuredDocumentation",
+          "src": "61:74:23",
+          "text": "@title IRelayer - Interface for gas sponsoring and meta-transactions"
+        },
+        "fullyImplemented": false,
+        "id": 4131,
+        "linearizedBaseContracts": [
+          4131
+        ],
+        "name": "IRelayer",
+        "nameLocation": "145:8:23",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "documentation": {
+              "id": 4091,
+              "nodeType": "StructuredDocumentation",
+              "src": "161:354:23",
+              "text": "@notice Called by a relayer to execute a transaction on user's behalf\n @param user The address of the user who signed the meta-TX\n @param to The target contract\n @param value ETH to send\n @param data Calldata payload\n @param nonce User nonce to prevent replay\n @param signature Signed message from user"
+            },
+            "functionSelector": "149cf9e5",
+            "id": 4106,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "executeMetaTx",
+            "nameLocation": "530:13:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4104,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4093,
+                  "mutability": "mutable",
+                  "name": "user",
+                  "nameLocation": "562:4:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4106,
+                  "src": "554:12:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4092,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "554:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4095,
+                  "mutability": "mutable",
+                  "name": "to",
+                  "nameLocation": "585:2:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4106,
+                  "src": "577:10:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4094,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "577:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4097,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nameLocation": "606:5:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4106,
+                  "src": "598:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4096,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "598:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4099,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "637:4:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4106,
+                  "src": "622:19:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 4098,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "622:5:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4101,
+                  "mutability": "mutable",
+                  "name": "nonce",
+                  "nameLocation": "660:5:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4106,
+                  "src": "652:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4100,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "652:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4103,
+                  "mutability": "mutable",
+                  "name": "signature",
+                  "nameLocation": "691:9:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4106,
+                  "src": "676:24:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 4102,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "676:5:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "543:164:23"
+            },
+            "returnParameters": {
+              "id": 4105,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "724:0:23"
+            },
+            "scope": 4131,
+            "src": "521:204:23",
+            "stateMutability": "payable",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 4107,
+              "nodeType": "StructuredDocumentation",
+              "src": "733:70:23",
+              "text": "@notice Returns the expected hash to be signed for a given meta-TX"
+            },
+            "functionSelector": "3335326a",
+            "id": 4122,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getMetaTxHash",
+            "nameLocation": "818:13:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4118,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4109,
+                  "mutability": "mutable",
+                  "name": "user",
+                  "nameLocation": "850:4:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4122,
+                  "src": "842:12:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4108,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "842:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4111,
+                  "mutability": "mutable",
+                  "name": "to",
+                  "nameLocation": "873:2:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4122,
+                  "src": "865:10:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4110,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "865:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4113,
+                  "mutability": "mutable",
+                  "name": "value",
+                  "nameLocation": "894:5:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4122,
+                  "src": "886:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4112,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "886:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4115,
+                  "mutability": "mutable",
+                  "name": "data",
+                  "nameLocation": "925:4:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4122,
+                  "src": "910:19:23",
+                  "stateVariable": false,
+                  "storageLocation": "calldata",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes_calldata_ptr",
+                    "typeString": "bytes"
+                  },
+                  "typeName": {
+                    "id": 4114,
+                    "name": "bytes",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "910:5:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes_storage_ptr",
+                      "typeString": "bytes"
+                    }
+                  },
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 4117,
+                  "mutability": "mutable",
+                  "name": "nonce",
+                  "nameLocation": "948:5:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4122,
+                  "src": "940:13:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 4116,
+                    "name": "uint256",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "940:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "831:129:23"
+            },
+            "returnParameters": {
+              "id": 4121,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4120,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4122,
+                  "src": "984:7:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bytes32",
+                    "typeString": "bytes32"
+                  },
+                  "typeName": {
+                    "id": 4119,
+                    "name": "bytes32",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "984:7:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bytes32",
+                      "typeString": "bytes32"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "983:9:23"
+            },
+            "scope": 4131,
+            "src": "809:184:23",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          },
+          {
+            "documentation": {
+              "id": 4123,
+              "nodeType": "StructuredDocumentation",
+              "src": "1001:48:23",
+              "text": "@notice Get relayer's current trusted status"
+            },
+            "functionSelector": "8342f26f",
+            "id": 4130,
+            "implemented": false,
+            "kind": "function",
+            "modifiers": [],
+            "name": "isRelayerApproved",
+            "nameLocation": "1064:17:23",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4126,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4125,
+                  "mutability": "mutable",
+                  "name": "relayer",
+                  "nameLocation": "1090:7:23",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4130,
+                  "src": "1082:15:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 4124,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1082:7:23",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1081:17:23"
+            },
+            "returnParameters": {
+              "id": 4129,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 4128,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nameLocation": "-1:-1:-1",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 4130,
+                  "src": "1122:4:23",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_bool",
+                    "typeString": "bool"
+                  },
+                  "typeName": {
+                    "id": 4127,
+                    "name": "bool",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1122:4:23",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1121:6:23"
+            },
+            "scope": 4131,
+            "src": "1055:73:23",
+            "stateMutability": "view",
+            "virtual": false,
+            "visibility": "external"
+          }
+        ],
+        "scope": 4132,
+        "src": "135:996:23",
+        "usedErrors": [],
+        "usedEvents": []
+      }
+    ],
+    "src": "33:1100:23"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.8.21+commit.d9974bed.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.4.16",
+  "updatedAt": "2025-07-07T07:55:29.168Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "executeMetaTx(address,address,uint256,bytes,uint256,bytes)": {
+        "params": {
+          "data": "Calldata payload",
+          "nonce": "User nonce to prevent replay",
+          "signature": "Signed message from user",
+          "to": "The target contract",
+          "user": "The address of the user who signed the meta-TX",
+          "value": "ETH to send"
+        }
+      }
+    },
+    "title": "IRelayer - Interface for gas sponsoring and meta-transactions",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "executeMetaTx(address,address,uint256,bytes,uint256,bytes)": {
+        "notice": "Called by a relayer to execute a transaction on user's behalf"
+      },
+      "getMetaTxHash(address,address,uint256,bytes,uint256)": {
+        "notice": "Returns the expected hash to be signed for a given meta-TX"
+      },
+      "isRelayerApproved(address)": {
+        "notice": "Get relayer's current trusted status"
+      }
+    },
+    "version": 1
+  }
+}
